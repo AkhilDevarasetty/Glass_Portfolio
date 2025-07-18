@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles and theme setup */
+:root {
+  --bg-color: #0f172a; /* A deep, dark blue */
+  --primary-glow: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.5), rgba(99, 102, 241, 0) 70%);
+  --secondary-glow: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.5), rgba(139, 92, 246, 0) 70%);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+/* Improve scroll performance */
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  color: #e2e8f0; /* A light gray for better contrast on dark bg */
+  overflow-x: hidden;
+}
+
+/* This CSS rule prevents the sticky header from covering section titles on navigation */
+section[id] {
+  scroll-margin-top: 7rem; /* Increased offset for header */
+}
+
+/* Animated background canvas */
+#gradient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(100px); /* This creates the soft, liquid look */
+  opacity: 0.7;
+}
+
+/* The main container for the content */
+.main-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* The "Liquid Glass" card style */
+.glass-card {
+  background: rgba(15, 23, 42, 0.6); /* Darker, more translucent base */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  height: 100%; /* Ensure cards in a grid row have the same height */
+}
+
+/* A subtle glow effect on hover */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.1),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Skill tags with a glassy feel */
+.skill-tag {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.skill-tag:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Header & Navigation Styles */
+.header-nav {
+  position: relative;
+}
+
+/* Navigation link styles */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+  color: #94a3b8;
+  z-index: 1;
+}
+
+.nav-link:hover {
+  color: #f1f5f9;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: #f1f5f9;
+}
+
+/* The moving active navigation badge */
+#nav-active-badge {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  z-index: 0;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity, width, left;
+}
+
+/* Animation for sections fading in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.section-title {
+  color: #c4b5fd; /* A soft violet for titles */
+}
+
+/* Timeline style for experience */
+.timeline-item {
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.timeline-dot {
+  background-color: #4f46e5;
+  border-color: #a5b4fc;
+}
+
+/* Glow animation for contact buttons */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px #a78bfa, 0 0 10px #a78bfa, 0 0 15px #a78bfa;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 20px #a78bfa, 0 0 30px #a78bfa, 0 0 40px #a78bfa;
+    opacity: 0.8;
+  }
+}
+
+@keyframes glow-icon {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px #a78bfa);
+    opacity: 1;
+  }
+  50% {
+    filter: drop-shadow(0 0 6px #a78bfa);
+    opacity: 0.7;
+  }
+}
+
+.glow-button {
+  animation: glow 2.5s infinite ease-in-out;
+}
+
+.glow-icon {
+  animation: glow-icon 2.5s infinite ease-in-out;
+}
