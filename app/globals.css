@@ -39,8 +39,8 @@ section[id] {
   width: 100%;
   height: 100%;
   z-index: -1;
-  filter: blur(100px); /* This creates the soft, liquid look */
-  opacity: 0.7;
+  filter: blur(120px); /* This creates the soft, liquid look */
+  opacity: 0.8;
 }
 
 /* The main container for the content */
@@ -49,21 +49,21 @@ section[id] {
   z-index: 1;
 }
 
-/* The "Liquid Glass" card style */
+/* Enhanced Glassmorphism Effects */
 .glass-card {
-  background: rgba(15, 23, 42, 0.6); /* Darker, more translucent base */
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: rgba(15, 23, 42, 0.25); /* More transparent for better glass effect */
+  backdrop-filter: blur(20px) saturate(180%); /* Increased blur for frosted glass */
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle glass edge */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight for glass depth */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
-  height: 100%; /* Ensure cards in a grid row have the same height */
+  height: 100%;
 }
 
-/* A subtle glow effect on hover */
+/* Enhanced glass reflection effect */
 .glass-card::before {
   content: "";
   position: absolute;
@@ -72,13 +72,29 @@ section[id] {
   right: 0;
   bottom: 0;
   background: radial-gradient(
-    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.1),
-    transparent 40%
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05) 40%,
+    transparent 70%
   );
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Light reflection on top edge */
+.glass-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4) 50%, transparent);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .glass-card:hover::before {
@@ -86,33 +102,94 @@ section[id] {
 }
 
 .glass-card:hover {
-  transform: translateY(-5px) scale(1.01);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.45);
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 0 1px
+    rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.35); /* Slightly more opaque on hover */
+}
+
+/* Ensure content is above the reflection effects */
+.glass-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Subtle animation for glass cards */
+@keyframes glassShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.glass-card-shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: glassShimmer 3s infinite;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Skill tags with a glassy feel */
 .skill-tag {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #cbd5e1;
-  transition: all 0.2s ease-in-out;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-tag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.skill-tag:hover::before {
+  left: 100%;
 }
 
 .skill-tag:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05) translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Header & Navigation Styles */
 .header-nav {
   position: relative;
+}
+
+/* Enhanced header with better glass effect */
+header {
+  background: rgba(15, 23, 42, 0.4) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Navigation link styles */
@@ -134,12 +211,14 @@ section[id] {
 
 /* The moving active navigation badge */
 #nav-active-badge {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(15px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
   position: absolute;
   top: -4px;
   bottom: -4px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 9999px;
   z-index: 0;
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -207,4 +286,16 @@ section[id] {
 
 .glow-icon {
   animation: glow-icon 2.5s infinite ease-in-out;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: blur(15px) saturate(150%);
+    -webkit-backdrop-filter: blur(15px) saturate(150%);
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
 }

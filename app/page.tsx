@@ -2,8 +2,11 @@
 import { Inter } from "next/font/google"
 import Header from "@/components/header"
 import HeroSection from "@/components/hero-section"
+import SpecializedFocusSection from "@/components/specialized-focus-section"
 import ExperienceSection from "@/components/experience-section"
 import SkillsSection from "@/components/skills-section"
+import EducationSection from "@/components/education-section"
+import AcademicProjectsSection from "@/components/academic-projects-section"
 import AwardsSection from "@/components/awards-section"
 import ConnectSection from "@/components/connect-section"
 import Footer from "@/components/footer"
@@ -48,8 +51,11 @@ export default function Home() {
 
           <main className="mt-10 md:mt-20">
             <HeroSection />
+            <SpecializedFocusSection />
             <ExperienceSection />
             <SkillsSection />
+            <EducationSection />
+            <AcademicProjectsSection />
             <AwardsSection />
             <ConnectSection />
           </main>

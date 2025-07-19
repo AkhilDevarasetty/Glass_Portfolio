@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   title: "Akhil Devarasetty - Software Developer",
   description:
     "Front-End-focused Software Engineer with 4+ years of experience building performant web applications for healthcare and enterprise IT.",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({

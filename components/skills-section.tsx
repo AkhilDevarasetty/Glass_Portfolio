@@ -36,7 +36,6 @@ export default function SkillsSection() {
   ]
 
   return (
-    <>
     <section id="skills" className="mt-20 fade-in" style={{ animationDelay: "0.4s" }}>
       <h3 className="text-3xl md:text-4xl font-bold text-center mb-12 section-title text-violet-300">
         Technical Skills
@@ -103,17 +102,5 @@ export default function SkillsSection() {
         </div>
       </div>
     </section>
-
-    <div className={`glass-card-enhanced rounded-2xl p-8 mt-12 text-center transition-all duration-1000 fade-in}`} style={{ animationDelay: '0.4s' }}>
-          <h3 className="text-xl font-semibold mb-2 text-primary">
-            🎯 Specialized Focus
-          </h3>
-          <p className="text-muted-foreground">
-            <span className="text-accent font-medium">70% Frontend</span> / 
-            <span className="text-primary font-medium"> 30% Backend</span> - 
-            Passionate about creating exceptional user experiences with solid backend knowledge
-          </p>
-        </div>
-      </>
   )
 }

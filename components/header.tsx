@@ -96,7 +96,7 @@ export default function Header() {
   return (
     <header className="flex justify-between items-center py-4 sticky top-4 z-20 bg-slate-900/60 backdrop-blur-lg px-6 rounded-xl border border-slate-100/10">
       <h1 className="text-2xl font-bold text-white tracking-wider">AD</h1>
-      <nav className="hidden md:flex space-x-6 items-center header-nav relative">
+      <nav className="hidden md:flex space-x-4 items-center header-nav relative">
         <div
           ref={navBadgeRef}
           id="nav-active-badge"
@@ -120,6 +120,18 @@ export default function Header() {
           className="nav-link font-medium px-3 py-1 transition-colors duration-200 text-slate-400 hover:text-slate-100 z-[1] relative will-change-transform"
         >
           Skills
+        </a>
+        <a
+          href="#education"
+          className="nav-link font-medium px-3 py-1 transition-colors duration-200 text-slate-400 hover:text-slate-100 z-[1] relative will-change-transform"
+        >
+          Education
+        </a>
+        <a
+          href="#academic-projects"
+          className="nav-link font-medium px-3 py-1 transition-colors duration-200 text-slate-400 hover:text-slate-100 z-[1] relative will-change-transform"
+        >
+          Projects
         </a>
         <a
           href="#awards"
